@@ -15,6 +15,7 @@ public class Main {
 
     public static void main (String[] args) {
         SpringApplication.run(Main.class,args);
+
     }
 
     @Bean
@@ -30,8 +31,6 @@ public class Main {
                     random.nextInt(16,99)
             );
 
-            //List<Customer> customers = List.of(alex, jamila);
-            //customerRepository.saveAll(customers);
             customerRepository.save(customer);
         };
     }
