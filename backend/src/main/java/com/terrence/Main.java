@@ -25,11 +25,17 @@ public class Main {
             Random random = new Random();
             String firstName = faker.name().firstName();
             String lastName = faker.name().lastName();
+            String gender;
+            if(Math.random() < .5) {
+                gender = Gender.MALE;
+            } else {
+                gender = Gender.FEMALE;
+            }
             Customer customer = new Customer(
                     firstName + " " + lastName,
                     firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com",
                     random.nextInt(16,99),
-                    Gender.MALE
+                    gender
             );
 
             //List<Customer> customers = List.of(alex, jamila);
