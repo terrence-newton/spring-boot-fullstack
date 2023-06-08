@@ -11,7 +11,9 @@ import {
     Tag,
 } from '@chakra-ui/react';
 
-export default function CardWithImage({id, name, email, age, gender}) {
+export default function CardWithImage({id, name, email, age, gender, imageNumber}) {
+    const randomUserGender = gender === 'Male' ? 'men' : 'women';
+    const randomUserIndex = imageNumber % 100;
     return (
         <Center py={6}>
             <Box
@@ -33,9 +35,7 @@ export default function CardWithImage({id, name, email, age, gender}) {
                     <Avatar
                         size={'xl'}
                         src={
-                            'https://randomuser.me/api/portraits/'
-                            + (gender === 'Male' ? 'men' : 'women')
-                            + '/' + Math.floor(Math.random() * 100) + '.jpg'
+                            `https://randomuser.me/api/portraits/${randomUserGender}/${randomUserIndex}.jpg`
                         }
                         alt={'Author'}
                         css={{
