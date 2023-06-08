@@ -34,7 +34,7 @@ export default function CardWithImage({id, name, email, age, gender}) {
                         size={'xl'}
                         src={
                             'https://randomuser.me/api/portraits/'
-                            + (gender == 'Male' ? 'men' : 'women')
+                            + (gender === 'Male' ? 'men' : 'women')
                             + '/' + Math.floor(Math.random() * 100) + '.jpg'
                         }
                         alt={'Author'}
