@@ -40,8 +40,9 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
+        Gender gender = Gender.FEMALE;
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age, Gender.FEMALE
+                name, email, age, gender
         );
 
         // send a post request
@@ -68,7 +69,7 @@ public class CustomerIntegrationTest {
 
         // make sure that customer is present
         Customer expectedCustomer = new Customer(
-          name, email, age, Gender.MALE
+          name, email, age, gender
         );
 
         assertThat(allCustomers)
@@ -103,8 +104,9 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
+        Gender gender = Gender.FEMALE;
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age, Gender.FEMALE
+                name, email, age, gender
         );
         // send a post request
         webTestClient.post()
