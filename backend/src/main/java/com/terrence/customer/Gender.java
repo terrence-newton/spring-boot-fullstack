@@ -1,5 +1,7 @@
 package com.terrence.customer;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.Arrays;
 
 public enum Gender {
@@ -19,6 +21,7 @@ public enum Gender {
                 '}';
     }
 
+    @JsonCreator
     public static Gender fromText(String text){
         return Arrays.stream(Gender.values())
                 .filter(g -> g.toString().equals(text))
