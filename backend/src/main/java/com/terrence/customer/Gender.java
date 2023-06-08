@@ -16,9 +16,7 @@ public enum Gender {
 
     @Override
     public String toString() {
-        return "Gender{" +
-                "display='" + display + '\'' +
-                '}';
+        return this.display;
     }
 
     @JsonCreator
