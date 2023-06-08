@@ -74,7 +74,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
     @Override
     public boolean existsCustomerWithId(Integer customerId) {
         var sql = """
-                select id, name, email, age, gender 
+                select 0 
                 from customer
                 where id = ?
                 """;
