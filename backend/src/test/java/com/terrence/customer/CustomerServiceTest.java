@@ -346,7 +346,7 @@ class CustomerServiceTest {
                 "George",
                 "alex@gmail.com",
                 21,
-                Gender.MALE
+                Gender.FEMALE
         );
 
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(originalCustomer));
