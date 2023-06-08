@@ -70,6 +70,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -106,6 +107,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -237,6 +239,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -275,6 +278,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -313,6 +317,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -351,6 +356,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 }
