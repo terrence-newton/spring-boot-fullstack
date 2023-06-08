@@ -25,7 +25,7 @@ class CustomerRowMapperTest {
         ResultSet resultSet = mock(ResultSet.class);
 
         Customer expected = new Customer(
-          1,"Alex","alex@gmail.com",21
+          1,"Alex","alex@gmail.com",21, Gender.FEMALE
         );
 
         when(resultSet.getInt("id")).thenReturn(expected.getId());
