@@ -38,8 +38,6 @@ public class Main {
                     gender
             );
 
-            //List<Customer> customers = List.of(alex, jamila);
-            //customerRepository.saveAll(customers);
             customerRepository.save(customer);
         };
     }
