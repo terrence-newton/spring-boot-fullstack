@@ -41,8 +41,8 @@ public class CustomerIntegrationTest {
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
         Gender gender = Gender.FEMALE;
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age, gender
+        CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
+                name, email, age, gender.toString()
         );
 
         // send a post request
@@ -50,7 +50,7 @@ public class CustomerIntegrationTest {
                 .uri(CUSTOMER_URI)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(request), CustomerRegistrationRequest.class)
+                .body(Mono.just(request), CustomerRegistrationRequestIT.class)
                 .exchange()
                 .expectStatus()
                 .isOk();
@@ -105,15 +105,15 @@ public class CustomerIntegrationTest {
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
         Gender gender = Gender.FEMALE;
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age, gender
+        CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
+                name, email, age, gender.toString()
         );
         // send a post request
         webTestClient.post()
                 .uri(CUSTOMER_URI)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(request), CustomerRegistrationRequest.class)
+                .body(Mono.just(request), CustomerRegistrationRequestIT.class)
                 .exchange()
                 .expectStatus()
                 .isOk();
@@ -164,8 +164,8 @@ public class CustomerIntegrationTest {
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
         Gender gender = Gender.MALE;
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age, gender
+        CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
+                name, email, age, gender.toString()
         );
 
         // send a post request
@@ -173,7 +173,7 @@ public class CustomerIntegrationTest {
                 .uri(CUSTOMER_URI)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(request), CustomerRegistrationRequest.class)
+                .body(Mono.just(request), CustomerRegistrationRequestIT.class)
                 .exchange()
                 .expectStatus()
                 .isOk();
@@ -209,11 +209,11 @@ public class CustomerIntegrationTest {
         String updateEmail = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int updateAge = RANDOM.nextInt(1,100);
         Gender updateGender = gender;
-        CustomerUpdateRequest update = new CustomerUpdateRequest(
+        CustomerUpdateRequestIT update = new CustomerUpdateRequestIT(
                 Optional.of(updateName),
                 Optional.of(updateEmail),
                 Optional.of(updateAge),
-                Optional.of(updateGender)
+                Optional.of(updateGender.toString())
         );
 
         expectedCustomer.setName(updateName);
@@ -224,7 +224,7 @@ public class CustomerIntegrationTest {
         webTestClient.put()
                 .uri(CUSTOMER_URI + "/{id}",id)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(update), CustomerUpdateRequest.class)
+                .body(Mono.just(update), CustomerUpdateRequestIT.class)
                 .exchange()
                 .expectStatus()
                 .isOk();
