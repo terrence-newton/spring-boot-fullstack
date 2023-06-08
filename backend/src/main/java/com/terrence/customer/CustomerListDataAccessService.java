@@ -74,6 +74,10 @@ public class CustomerListDataAccessService implements CustomerDAO{
                 updateCustomer.setAge(customer.getAge());
             }
 
+            if(customer.getGender() != null) {
+                updateCustomer.setGender(customer.getGender());
+            }
+
         }
 
     }
