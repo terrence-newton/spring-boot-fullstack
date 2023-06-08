@@ -3,6 +3,7 @@ package com.terrence;
 import com.github.javafaker.Faker;
 import com.terrence.customer.Customer;
 import com.terrence.customer.CustomerRepository;
+import com.terrence.customer.Gender;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +28,8 @@ public class Main {
             Customer customer = new Customer(
                     firstName + " " + lastName,
                     firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com",
-                    random.nextInt(16,99)
+                    random.nextInt(16,99),
+                    Gender.MALE
             );
 
             //List<Customer> customers = List.of(alex, jamila);

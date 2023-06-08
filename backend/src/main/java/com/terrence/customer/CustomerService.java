@@ -32,7 +32,8 @@ public class CustomerService {
                     new Customer(
                             customerRegistrationRequest.name(),
                             customerRegistrationRequest.email(),
-                            customerRegistrationRequest.age()
+                            customerRegistrationRequest.age(),
+                            customerRegistrationRequest.gender()
                     )
             );
         } else {
@@ -60,9 +61,10 @@ public class CustomerService {
 
         Customer updatedCustomer = new Customer(
           customerId
-          ,customerUpdateRequest.name().orElse(originalCustomer.getName())
-          ,customerUpdateRequest.email().orElse(originalCustomer.getEmail())
-          ,customerUpdateRequest.age().orElse(originalCustomer.getAge())
+                ,customerUpdateRequest.name().orElse(originalCustomer.getName())
+                ,customerUpdateRequest.email().orElse(originalCustomer.getEmail())
+                ,customerUpdateRequest.age().orElse(originalCustomer.getAge())
+                ,customerUpdateRequest.gender().orElse(originalCustomer.getGender())
         );
 
         if (updatedCustomer.equals(originalCustomer)) {
@@ -76,7 +78,6 @@ public class CustomerService {
         }
 
         customerDAO.updateCustomer(updatedCustomer);
-        //customerDAO.selectCustomerById(customerId).get();
 
     }
 

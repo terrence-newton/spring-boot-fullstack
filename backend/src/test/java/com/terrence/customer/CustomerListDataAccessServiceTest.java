@@ -26,7 +26,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.MALE
         );
 
         underTest.insertCustomer(customer);
@@ -45,7 +46,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);
@@ -67,6 +69,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -88,7 +91,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.FEMALE
         );
 
         //When
@@ -102,6 +106,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -112,7 +117,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.MALE
         );
 
         underTest.insertCustomer(customer);
@@ -143,7 +149,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);
@@ -168,7 +175,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.MALE
         );
 
         underTest.insertCustomer(customer);
@@ -201,7 +209,8 @@ class CustomerListDataAccessServiceTest {
         Customer OriginalCustomer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(OriginalCustomer);
@@ -214,7 +223,8 @@ class CustomerListDataAccessServiceTest {
                 id,
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                30
+                30,
+                Gender.MALE
         );
 
         //When
@@ -228,6 +238,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -237,7 +248,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);
@@ -250,7 +262,8 @@ class CustomerListDataAccessServiceTest {
                 id,
                 null,
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                30
+                30,
+                Gender.MALE
         );
 
         //When
@@ -264,6 +277,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -273,7 +287,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);
@@ -287,6 +302,7 @@ class CustomerListDataAccessServiceTest {
                 FAKER.name().fullName(),
                 null,
                 30
+                ,Gender.MALE
         );
 
         //When
@@ -300,6 +316,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customerUpdate.getAge());
+            assertThat(c.getGender()).isEqualTo(customerUpdate.getGender());
         });
     }
 
@@ -309,7 +326,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);
@@ -323,6 +341,7 @@ class CustomerListDataAccessServiceTest {
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
                 null
+                ,Gender.MALE
         );
 
         //When
@@ -336,6 +355,7 @@ class CustomerListDataAccessServiceTest {
             assertThat(c.getName()).isEqualTo(customerUpdate.getName());
             assertThat(c.getEmail()).isEqualTo(customerUpdate.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 }
