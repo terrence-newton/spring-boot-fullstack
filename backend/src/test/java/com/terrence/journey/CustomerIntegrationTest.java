@@ -40,7 +40,7 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
-        Gender gender = Gender.FEMALE;
+        String gender = Gender.FEMALE;
         CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
                 name, email, age, gender.toString()
         );
@@ -104,7 +104,7 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
-        Gender gender = Gender.FEMALE;
+        String gender = Gender.FEMALE;
         CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
                 name, email, age, gender.toString()
         );
@@ -163,7 +163,7 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
-        Gender gender = Gender.MALE;
+        String gender = Gender.MALE;
         CustomerRegistrationRequestIT request = new CustomerRegistrationRequestIT(
                 name, email, age, gender.toString()
         );
@@ -208,7 +208,7 @@ public class CustomerIntegrationTest {
         String updateName = fakerName.fullName();
         String updateEmail = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int updateAge = RANDOM.nextInt(1,100);
-        Gender updateGender = gender;
+        String updateGender = gender;
         CustomerUpdateRequestIT update = new CustomerUpdateRequestIT(
                 Optional.of(updateName),
                 Optional.of(updateEmail),
