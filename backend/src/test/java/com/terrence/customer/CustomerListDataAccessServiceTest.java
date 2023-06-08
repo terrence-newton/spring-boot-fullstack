@@ -26,7 +26,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20
+                20,
+                Gender.MALE
         );
 
         underTest.insertCustomer(customer);
@@ -45,7 +46,8 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
+                20,
+                Gender.FEMALE
         );
 
         underTest.insertCustomer(customer);

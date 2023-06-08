@@ -48,7 +48,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
                 customer.getName(),
                 customer.getEmail(),
                 customer.getAge(),
-                customer.getGender().name()
+                customer.getGender().toString()
         );
     }
 
@@ -97,7 +97,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
         }
         if(customer.getGender() != null) {
             var sql = "update customer set gender = ? where id = ?";
-            jdbcTemplate.update(sql, customer.getGender(), customer.getId());
+            jdbcTemplate.update(sql, customer.getGender().toString(), customer.getId());
         }
     }
 }
