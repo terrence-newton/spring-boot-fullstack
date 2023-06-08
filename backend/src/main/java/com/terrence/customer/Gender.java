@@ -1,5 +1,7 @@
 package com.terrence.customer;
 
+import java.util.Arrays;
+
 public enum Gender {
     MALE ("Male"),
     FEMALE ("Female");
@@ -15,5 +17,11 @@ public enum Gender {
         return "Gender{" +
                 "display='" + display + '\'' +
                 '}';
+    }
+
+    public static Gender fromText(String text){
+        return Arrays.stream(Gender.values())
+                .filter(g -> g.toString().equals(text))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException());
     }
 }
