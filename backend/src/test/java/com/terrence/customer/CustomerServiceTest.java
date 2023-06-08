@@ -297,7 +297,7 @@ class CustomerServiceTest {
                 Optional.empty(),
                 Optional.empty(),
                 Optional.empty(),
-                Optional.of(Gender.FEMALE)
+                Optional.of(Gender.MALE)
         );
 
         Customer originalCustomer = new Customer(
