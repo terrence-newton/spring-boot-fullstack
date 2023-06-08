@@ -5,6 +5,7 @@ import com.github.javafaker.Name;
 import com.terrence.customer.Customer;
 import com.terrence.customer.CustomerRegistrationRequest;
 import com.terrence.customer.CustomerUpdateRequest;
+import com.terrence.customer.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,7 +41,7 @@ public class CustomerIntegrationTest {
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, Gender.FEMALE
         );
 
         // send a post request
@@ -67,7 +68,7 @@ public class CustomerIntegrationTest {
 
         // make sure that customer is present
         Customer expectedCustomer = new Customer(
-          name, email, age
+          name, email, age, Gender.MALE
         );
 
         assertThat(allCustomers)
@@ -103,7 +104,7 @@ public class CustomerIntegrationTest {
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, Gender.FEMALE
         );
         // send a post request
         webTestClient.post()
@@ -160,8 +161,9 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int age = RANDOM.nextInt(1,100);
+        Gender gender = Gender.MALE;
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                name, email, age
+                name, email, age, gender
         );
 
         // send a post request
@@ -188,7 +190,7 @@ public class CustomerIntegrationTest {
 
         // make sure that customer is present
         Customer expectedCustomer = new Customer(
-                name, email, age
+                name, email, age, gender
         );
 
         // update customer
@@ -204,13 +206,18 @@ public class CustomerIntegrationTest {
         String updateName = fakerName.fullName();
         String updateEmail = fakerName.lastName() + "-" + UUID.randomUUID() + "@amigoscode.com.com";
         int updateAge = RANDOM.nextInt(1,100);
+        Gender updateGender = gender;
         CustomerUpdateRequest update = new CustomerUpdateRequest(
-                Optional.of(updateName), Optional.of(updateEmail), Optional.of(updateAge)
+                Optional.of(updateName),
+                Optional.of(updateEmail),
+                Optional.of(updateAge),
+                Optional.of(updateGender)
         );
 
         expectedCustomer.setName(updateName);
         expectedCustomer.setEmail(updateEmail);
         expectedCustomer.setAge(updateAge);
+        expectedCustomer.setGender(updateGender);
 
         webTestClient.put()
                 .uri(CUSTOMER_URI + "/{id}",id)
