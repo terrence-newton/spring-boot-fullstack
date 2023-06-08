@@ -32,6 +32,7 @@ class CustomerRowMapperTest {
         when(resultSet.getString("name")).thenReturn(expected.getName());
         when(resultSet.getString("email")).thenReturn(expected.getEmail());
         when(resultSet.getInt("age")).thenReturn(expected.getAge());
+        when(resultSet.getString("gender")).thenReturn(expected.getGender().toString());
 
         //When
         Customer actual = customerRowMapper.mapRow(resultSet,1);
