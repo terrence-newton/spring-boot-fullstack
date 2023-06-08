@@ -15,7 +15,7 @@ import java.util.Objects;
         }
 )
 public class Customer {
-    public Customer(String name, String email, Integer age, Gender gender) {
+    public Customer(String name, String email, Integer age, String gender) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -39,11 +39,11 @@ public class Customer {
     private String email;
     @Column(nullable = false)
     private Integer age;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Gender gender;
 
-    public Customer(Integer id, String name, String email, Integer age, Gender gender) {
+    @Column(nullable = false)
+    private String gender;
+
+    public Customer(Integer id, String name, String email, Integer age, String gender) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -109,11 +109,11 @@ public class Customer {
         return Objects.hash(id, name, email, age, gender);
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }
