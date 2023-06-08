@@ -48,7 +48,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
                 customer.getName(),
                 customer.getEmail(),
                 customer.getAge(),
-                customer.getGender()
+                customer.getGender().name()
         );
     }
 
