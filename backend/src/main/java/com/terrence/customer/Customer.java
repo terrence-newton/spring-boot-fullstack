@@ -109,8 +109,8 @@ public class Customer {
         return Objects.hash(id, name, email, age, gender);
     }
 
-    public String getGender() {
-        return gender.toString();
+    public Gender getGender() {
+        return gender;
     }
 
     public void setGender(Gender gender) {
