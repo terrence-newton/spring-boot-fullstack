@@ -8,10 +8,11 @@ import {
     Text,
     Stack,
     useColorModeValue,
-    Tag,
+    Tag, Button,
 } from '@chakra-ui/react';
+import DeleteCustomerButton from "./DeleteCustomerButton.jsx";
 
-export default function CardWithImage({id, name, email, age, gender, imageNumber}) {
+export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
     const randomUserGender = gender === 'Male' ? 'men' : 'women';
     const randomUserIndex = imageNumber % 100;
     return (
@@ -54,8 +55,15 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                         </Heading>
                         <Text color={'gray.500'}>{email}</Text>
                         <Text color={'gray.500'}>Age {age} | {gender}</Text>
+
                     </Stack>
                 </Box>
+                <Stack m={8}>
+                    <DeleteCustomerButton
+                        id={id}
+                        fetchCustomers={fetchCustomers}
+                    />
+                </Stack>
             </Box>
         </Center>
     );
