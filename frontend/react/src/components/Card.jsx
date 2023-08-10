@@ -11,6 +11,7 @@ import {
     Tag, Button,
 } from '@chakra-ui/react';
 import DeleteCustomerButton from "./DeleteCustomerButton.jsx";
+import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
 
 export default function CardWithImage({id, name, email, age, gender, imageNumber, fetchCustomers}) {
     const randomUserGender = gender === 'Male' ? 'men' : 'women';
@@ -59,8 +60,20 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                     </Stack>
                 </Box>
                 <Stack m={8}>
+                    <UpdateCustomerDrawer
+                        id={id}
+                        name={name}
+                        email={email}
+                        age={age}
+                        gender={gender}
+                        fetchCustomers={fetchCustomers}
+                    />
                     <DeleteCustomerButton
                         id={id}
+                        name={name}
+                        email={email}
+                        age={age}
+                        gender={gender}
                         fetchCustomers={fetchCustomers}
                     />
                 </Stack>
