@@ -69,8 +69,6 @@ jobs:
           curl -X POST -H 'Content-type: application/json' 
           --data '{"text":"amigoscode-api deployed to elastic beanstalk: ${{steps.build-number.outputs.BUILD_NUMBER}}"}' 
           ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Remove /BUILD_NUMBER.TXT
-        run: rm -f ../../BUILD_NUMBER.TXT
       - name: Commit and push Dockerrun.aws.json
         run: |
           git config user.name github-actions

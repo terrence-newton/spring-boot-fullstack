@@ -55,6 +55,13 @@ jobs:
       - name: Get build number
         id: build-number
         run: cat ../BUILD_NUMBER.TXT > $GITHUB_OUTPUT
+      - name: Commit and push BUILD_NUMBER.TXT
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ../BUILD_NUMBER.TXT
+          git commit -m "Update BUILD_NUMBER.TXT with new tag ${{steps.build-number.outputs.BUILD_NUMBER}}"
+          git push
       - name: Build Package Push with Maven
         run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: slack message - build complete
