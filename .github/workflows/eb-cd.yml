@@ -1,0 +1,39 @@
+name: CD - Deploy to Elastic Beanstalk
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [CD - Deploy Frontend React]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
+          version_description: ${{github.SHA}}
+          region: ${{ secrets.EB_REGION }}
+          deployment_package: Dockerrun.aws.json
+      - name: slack message - deployed to elastic beanstalk
+        run: >
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"amigoscode-api deployed to elastic beanstalk: ${{steps.build-number.outputs.BUILD_NUMBER}}"}' 
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Commit and push Dockerrun.aws.json
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add Dockerrun.aws.json
+          git commit -m "Update Dockerrun.aws.json docker image with new tag ${{steps.build-number.outputs.BUILD_NUMBER}}"
+          git push
