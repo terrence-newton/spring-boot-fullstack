@@ -21,7 +21,7 @@
     },
     {
       "name": "amigoscode-react",
-      "image": "tjnewton/amigoscode-react:latest",
+      "image": "tjnewton/amigoscode-react:2023.08.11.22.54.52",
       "essential": true,
       "memory": 256,
       "portMappings": [
