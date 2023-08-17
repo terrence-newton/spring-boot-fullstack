@@ -26,7 +26,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.MALE
         );
 
@@ -46,7 +46,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -91,7 +91,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -117,7 +117,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.MALE
         );
 
@@ -149,7 +149,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -175,7 +175,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.MALE
         );
 
@@ -209,7 +209,7 @@ class CustomerListDataAccessServiceTest {
         Customer OriginalCustomer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -223,7 +223,7 @@ class CustomerListDataAccessServiceTest {
                 id,
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                30,
+                "password", 30,
                 Gender.MALE
         );
 
@@ -248,7 +248,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -262,7 +262,7 @@ class CustomerListDataAccessServiceTest {
                 id,
                 null,
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                30,
+                "password", 30,
                 Gender.MALE
         );
 
@@ -287,7 +287,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -301,7 +301,7 @@ class CustomerListDataAccessServiceTest {
                 id,
                 FAKER.name().fullName(),
                 null,
-                30
+                "password", 30
                 ,Gender.MALE
         );
 
@@ -326,7 +326,7 @@ class CustomerListDataAccessServiceTest {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                20,
+                "password", 20,
                 Gender.FEMALE
         );
 
@@ -340,7 +340,7 @@ class CustomerListDataAccessServiceTest {
                 id,
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                null
+                "password", null
                 ,Gender.MALE
         );
 

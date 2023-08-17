@@ -81,4 +81,11 @@ public class CustomerListDataAccessService implements CustomerDAO{
         }
 
     }
+
+    @Override
+    public Optional<Customer> selectUserByEmail(String email) {
+        return customers.stream()
+                .filter(c -> c.getEmail().equals(email))
+                .findFirst();
+    }
 }

@@ -3,6 +3,7 @@ package com.terrence.customer;
 import com.terrence.exception.DuplicateResourceException;
 import com.terrence.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,17 +12,25 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerDAO customerDAO;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomerDTOMapper mapper;
 
-    public CustomerService(@Qualifier("jdbc") CustomerDAO customerDAO) {
+    public CustomerService(@Qualifier("jdbc") CustomerDAO customerDAO, PasswordEncoder passwordEncoder, CustomerDTOMapper mapper) {
         this.customerDAO = customerDAO;
+        this.passwordEncoder = passwordEncoder;
+        this.mapper = mapper;
     }
 
-    public List<Customer> getAllCustomers () {
-        return customerDAO.selectAllCustomers();
+    public List<CustomerDTO> getAllCustomers () {
+
+        return customerDAO.selectAllCustomers()
+                .stream()
+                .map(mapper).toList();
     }
 
-    public Customer getCustomer (Integer customerId) {
-        Customer customer = customerDAO.selectCustomerById(customerId)
+    public CustomerDTO getCustomer (Integer customerId) {
+        CustomerDTO customer = customerDAO.selectCustomerById(customerId)
+                .map(mapper)
                 .orElseThrow(() -> customerWithIdNotFound(customerId));
         return customer;
     }
@@ -32,6 +41,7 @@ public class CustomerService {
                     new Customer(
                             customerRegistrationRequest.name(),
                             customerRegistrationRequest.email(),
+                            passwordEncoder.encode(customerRegistrationRequest.password()),
                             customerRegistrationRequest.age(),
                             customerRegistrationRequest.gender()
                     )
@@ -63,7 +73,8 @@ public class CustomerService {
           customerId
                 ,customerUpdateRequest.name().orElse(originalCustomer.getName())
                 ,customerUpdateRequest.email().orElse(originalCustomer.getEmail())
-                ,customerUpdateRequest.age().orElse(originalCustomer.getAge())
+                , "password"
+                , customerUpdateRequest.age().orElse(originalCustomer.getAge())
                 ,customerUpdateRequest.gender().orElse(originalCustomer.getGender())
         );
 

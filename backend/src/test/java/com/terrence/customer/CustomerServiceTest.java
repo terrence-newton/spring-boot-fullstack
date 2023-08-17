@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -20,10 +21,13 @@ class CustomerServiceTest {
     @Mock
     private CustomerDAO customerDAO;
     private CustomerService underTest;
+    private final CustomerDTOMapper mapper = new CustomerDTOMapper();
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     void setUp() {
-        underTest = new CustomerService(customerDAO);
+        underTest = new CustomerService(customerDAO, passwordEncoder, mapper);
     }
 
     @Test
@@ -39,15 +43,15 @@ class CustomerServiceTest {
     void canGetCustomer() {
         int id = 10;
         Customer customer = new Customer(
-                id, "Alex", "alex@gmail.com", 19, Gender.MALE
+                id, "Alex", "alex@gmail.com", "password", 19, Gender.MALE
         );
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
         //When
-        Customer actual = underTest.getCustomer(id);
+        CustomerDTO actual = underTest.getCustomer(id);
 
         //Then
-        assertThat(actual).isEqualTo(customer);
+        assertThat(actual).isEqualTo(mapper.apply(customer));
     }
 
     @Test
@@ -68,8 +72,12 @@ class CustomerServiceTest {
         //Given
         CustomerRegistrationRequest customerRegistrationRequest =
                 new CustomerRegistrationRequest(
-                "Alex", "alex@gmail.com", 19, Gender.MALE
+                "Alex", "alex@gmail.com", "password", 19, Gender.MALE
         );
+
+        String passwordHash = "@$%#$gnkgf9042";
+
+        when(passwordEncoder.encode(customerRegistrationRequest.password())).thenReturn(passwordHash);
 
         when(customerDAO.existsCustomerWithEmail(customerRegistrationRequest.email()))
                 .thenReturn(false);
@@ -90,7 +98,7 @@ class CustomerServiceTest {
         assertThat(capturedCustomer.getEmail()).isEqualTo(customerRegistrationRequest.email());
         assertThat(capturedCustomer.getAge()).isEqualTo(customerRegistrationRequest.age());
         assertThat(capturedCustomer.getGender()).isEqualTo(customerRegistrationRequest.gender());
-
+        assertThat(capturedCustomer.getPassword()).isEqualTo(passwordHash);
 
     }
 
@@ -99,7 +107,7 @@ class CustomerServiceTest {
         //Given
         CustomerRegistrationRequest customerRegistrationRequest =
                 new CustomerRegistrationRequest(
-                        "Alex", "alex@gmail.com", 19, Gender.MALE
+                        "Alex", "alex@gmail.com", "password", 19, Gender.MALE
                 );
 
         when(customerDAO.existsCustomerWithEmail(customerRegistrationRequest.email()))
@@ -176,7 +184,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.MALE
         );
 
@@ -218,7 +226,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.FEMALE
         );
 
@@ -262,7 +270,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.FEMALE
         );
 
@@ -304,7 +312,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.FEMALE
         );
 
@@ -345,7 +353,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.FEMALE
         );
 
@@ -375,7 +383,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.FEMALE
         );
 
@@ -405,7 +413,7 @@ class CustomerServiceTest {
                 10,
                 "George",
                 "alex@gmail.com",
-                21,
+                "password", 21,
                 Gender.MALE
         );
 

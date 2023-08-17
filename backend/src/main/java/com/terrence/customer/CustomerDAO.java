@@ -1,5 +1,6 @@
 package com.terrence.customer;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,4 +12,5 @@ public interface CustomerDAO {
     void deleteCustomer(Integer customerId);
     boolean existsCustomerWithId(Integer customerId);
     public void updateCustomer(Customer customer);
+    Optional<Customer> selectUserByEmail(String email);
 }

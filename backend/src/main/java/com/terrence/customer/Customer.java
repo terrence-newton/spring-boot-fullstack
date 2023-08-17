@@ -1,7 +1,12 @@
 package com.terrence.customer;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,12 +19,18 @@ import java.util.Objects;
                 )
         }
 )
-public class Customer {
-    public Customer(String name, String email, Integer age, String gender) {
+public class Customer implements UserDetails {
+
+    public Customer(String name, String email, String password, Integer age, String gender) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.age = age;
         this.gender = gender;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Id
@@ -43,10 +54,20 @@ public class Customer {
     @Column(nullable = false)
     private String gender;
 
-    public Customer(Integer id, String name, String email, Integer age, String gender) {
+    @Column(nullable = false)
+    private String password;
+
+    public Customer(
+            Integer id,
+            String name,
+            String email,
+            String password,
+            Integer age,
+            String gender) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.age = age;
         this.gender = gender;
     }
@@ -115,5 +136,40 @@ public class Customer {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
