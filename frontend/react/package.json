@@ -17,9 +17,11 @@
     "formik": "^2.4.1",
     "framer-motion": "^10.12.16",
     "icons": "^1.0.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
+    "react-router-dom": "^6.8.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

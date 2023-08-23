@@ -50,13 +50,3 @@ const CreateCustomerDrawer = ({fetchCustomers}) => {
 }
 
 export default CreateCustomerDrawer;
-
-/*export const App = () => {
-
-    return (
-        <>
-            <Button onClick={onOpen}>Open</Button>
-
-        </>
-    )
-}*/

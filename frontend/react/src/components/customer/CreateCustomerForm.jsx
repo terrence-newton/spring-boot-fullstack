@@ -1,8 +1,8 @@
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import {Alert, AlertIcon, Box, Button, FormLabel, Input, Select, Stack} from "@chakra-ui/react";
-import {saveCustomer} from "../services/client.js";
-import {errorNotification, successNotification} from "../services/notification.js";
+import {saveCustomer} from "../../services/client.js";
+import {errorNotification, successNotification} from "../../services/notification.js";
 
 const MyTextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -67,7 +67,10 @@ const CreateCustomerForm = ({fetchCustomers}) => {
                             ['Male','Female'],
                             'Invalid gender'
                         )
-                        .required('Required')
+                        .required('Required'),
+                     password: Yup.string()
+                         .max(20, "Password cannot be more than 20 characters")
+                         .required("Password is required")
                 })}
                 onSubmit={(customer, { setSubmitting }) => {
                     setSubmitting(true);
@@ -116,6 +119,12 @@ const CreateCustomerForm = ({fetchCustomers}) => {
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </MySelect>
+
+                            <MyTextInput
+                                label="Password"
+                                name="password"
+                                type="password"
+                            />
 
                             <Button isDisabled={!isValid || isSubmitting || !dirty} type="submit" >
                                 Submit

@@ -7,8 +7,8 @@ import {
     AlertDialogOverlay,
     Button, useDisclosure
 } from "@chakra-ui/react";
-import {deleteCustomer} from "../services/client.js";
-import {errorNotification, successNotification} from "../services/notification.js";
+import {deleteCustomer} from "../../services/client.js";
+import {errorNotification, successNotification} from "../../services/notification.js";
 
 export default function DeleteCustomerButton({id, fetchCustomers}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
