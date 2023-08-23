@@ -26,9 +26,7 @@ public class AuthenticationController {
         AuthenticationResponse response = authenticationService.login(authenticationRequest);
         return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, response.token())
-                .build()
-                //.body(response)
-                ;
+                .body(response);
 
     }
 }

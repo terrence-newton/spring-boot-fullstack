@@ -82,15 +82,16 @@ public class AuthenticationIntegrationTest {
                 .get(AUTHORIZATION)
                 .get(0);
 
+        CustomerDTO customerDTO = result.getResponseBody().customerDTO();
         assertThat(jwtUtil.isTokenValid(jwtToken,
-                email));
+                customerDTO.username()));
 
-//        assertThat(customerDTO.email()).isEqualTo(email);
-//        assertThat(customerDTO.age()).isEqualTo(age);
-//        assertThat(customerDTO.name()).isEqualTo(name);
-//        assertThat(customerDTO.username()).isEqualTo(email);
-//        assertThat(customerDTO.gender()).isEqualTo(gender);
-//        assertThat(customerDTO.roles()).isEqualTo(List.of("ROLE_USER"));
+        assertThat(customerDTO.email()).isEqualTo(email);
+        assertThat(customerDTO.age()).isEqualTo(age);
+        assertThat(customerDTO.name()).isEqualTo(name);
+        assertThat(customerDTO.username()).isEqualTo(email);
+        assertThat(customerDTO.gender()).isEqualTo(gender);
+        assertThat(customerDTO.roles()).isEqualTo(List.of("ROLE_USER"));
     }
 
     @Test
