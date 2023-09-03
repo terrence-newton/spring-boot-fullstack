@@ -3,15 +3,15 @@ import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import { useEffect, useState } from "react";
 import { getCustomers } from "./services/client.js";
 import CardWithImage from "./components/customer/CustomerCard.jsx";
-import CreateCustomerDrawer from "./components/customer/CreateCustomerDrawer.jsx";
 import {errorNotification} from "./services/notification.js";
+import CreateCustomerDrawer from "./components/customer/CreateCustomerDrawer.jsx";
 
 const App = () => {
 
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const fetchCustomers = () => {
+    const fetchCustomers = (token) => {
         setLoading(true);
         getCustomers().then(res => {
             setCustomers(res.data)
